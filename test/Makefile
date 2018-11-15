@@ -3,7 +3,7 @@
 all: clean build run
 
 build: ../src/fib.hpp catch.hpp test.cpp
-	clang++ -std=c++17 -o test test.cpp
+	clang++ -std=c++17 -o test test.cpp -v
 
 catch.hpp:
 	wget https://github.com/catchorg/Catch2/releases/download/v2.4.2/catch.hpp
