@@ -3,6 +3,13 @@ compiler: clang
 os: linux
 dist: xenial
 
+addons:
+    apt:
+        sources:
+            - ubuntu-toolchain-r-test
+        packages:
+            - libstdc++-8-dev
+
 before_install:
     - cd test
 
