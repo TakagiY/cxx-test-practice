@@ -4,8 +4,8 @@ compiler:
     - clang
 
 env:
-    - CXXFLAGS='-std=c++11 --coverage'
-    - CXXFLAGS='-std=c++14 --coverage'
+    - CXXFLAGS='-std=c++11'
+    - CXXFLAGS='-std=c++14'
     - CXXFLAGS='-std=c++17 --coverage'
 
 os: linux
@@ -27,3 +27,6 @@ install:
 
 script:
     - make run
+
+after-success:
+    - if [[ $CXXFLAGS = '-std=c++17 --coverage' ]] && [[ $CXX = 'clang++' ]]; then bash <(curl -s https://codecov.io/bash); fi
