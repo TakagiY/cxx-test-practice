@@ -29,4 +29,7 @@ script:
     - make run
 
 after_success:
-    - if [[ $CXXFLAGS = '-std=c++17 --coverage' ]] && [[ $CXX = 'clang++' ]]; then bash <(curl -s https://codecov.io/bash); fi
+    - |
+      if [[ $CXXFLAGS = '-std=c++17 --coverage' ]] && [[ $CXX = 'clang++' ]]; then
+        bash <(curl -s https://codecov.io/bash) -x 'llvm-cov gcov'
+      fi
