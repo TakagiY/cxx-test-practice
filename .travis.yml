@@ -18,15 +18,8 @@ addons:
         packages:
             - libstdc++-8-dev
 
-before_install:
-    - cd test
-
-install:
-    - make clean
-    - make build
-
 script:
-    - make run
+    - make test
 
 after_success:
     - |
