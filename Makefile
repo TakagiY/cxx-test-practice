@@ -1,6 +1,3 @@
-CXX = clang++
-CXXFLAGS = -std=c++17 --coverage
-
 .PHONY: test clean
 
 test: test/test
