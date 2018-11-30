@@ -28,5 +28,5 @@ install:
 script:
     - make run
 
-after-success:
+after_success:
     - if [[ $CXXFLAGS = '-std=c++17 --coverage' ]] && [[ $CXX = 'clang++' ]]; then bash <(curl -s https://codecov.io/bash); fi
