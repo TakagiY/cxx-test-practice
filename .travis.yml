@@ -1,5 +1,13 @@
 language: cpp
-compiler: clang
+compiler:
+    - gcc
+    - clang
+
+env:
+    - CXXFLAGS='-std=c++11 --coverage'
+    - CXXFLAGS='-std=c++14 --coverage'
+    - CXXFLAGS='-std=c++17 --coverage'
+
 os: linux
 dist: xenial
 

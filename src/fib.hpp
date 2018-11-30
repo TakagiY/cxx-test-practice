@@ -2,8 +2,9 @@
 #include <type_traits>
 
 template <class Int>
-auto fib(Int n) {
-  static_assert(std::is_integral_v<Int>);
+auto fib(Int n) -> Int {
+  static_assert(std::is_integral<Int>::value,
+                "type of n is must be integer type.");
 
   if (n < 0) {
     throw std::logic_error{"fib(n): n must not be negative."};
