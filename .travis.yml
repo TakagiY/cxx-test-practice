@@ -27,6 +27,8 @@ script:
 jobs:
     include:
         - stage: report coverage
+          compiler: clang
+          env: CXXFLAGS='-std=c++17'
           script:
               - export CXX=clang++
               - export CXXFLAGS="-fprofile-instr-generate -fcoverage-mapping -g"
