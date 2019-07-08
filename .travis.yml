@@ -6,7 +6,7 @@ compiler:
 env:
     - CXXFLAGS='-std=c++11'
     - CXXFLAGS='-std=c++14'
-    - CXXFLAGS='-std=c++17 --coverage'
+    - CXXFLAGS='-std=c++17'
 
 os: linux
 dist: xenial
@@ -21,8 +21,13 @@ addons:
 script:
     - make test
 
-after_success:
-    - |
-      if [[ $CXXFLAGS = '-std=c++17 --coverage' ]] && [[ $CXX = 'clang++' ]]; then
-        bash <(curl -s https://codecov.io/bash) -x 'llvm-cov gcov'
-      fi
+jobs:
+    include:
+        - stage: report coverage
+          script:
+              - export CXX=clang++
+              - export CXXFLAGS="-fprofile-instr-generate -fcoverage-mapping -g"
+              - make test
+              - llvm-profdata merge default.profraw -output=default.profdata
+              - llvm-cov show test/test -instr-profile=default.profdata > coverage.txt
+              - bash <(curl -s https://codecov.io/bash)
