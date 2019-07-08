@@ -18,6 +18,9 @@ addons:
         packages:
             - libstdc++-8-dev
 
+before_script:
+    - echo Hello
+
 script:
     - make test
 
